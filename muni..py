@@ -1,11 +1,8 @@
-import sys 
-print("Enter your line press ctrl + z if you want to end.")
-try:
-    lines = sys.stdin.readlines()
+import itertools
 
-except EOFError:
-    print("End of the file. ")
+iterator = iter(input,"")
 
-finally:
-    for item in reversed(lines):
-        print(item.strip())
+lines = list(itertools.takewhile(lambda x: True, iterator))
+
+for item in reversed(lines):
+    print(item)
