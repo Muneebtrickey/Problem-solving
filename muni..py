@@ -1,8 +1,9 @@
-import itertools
+a = [1,2,3]
+b = [4 ,5,6]
+zipped = zip(a,b)
 
-iterator = iter(input,"")
+# lets unzip 
 
-lines = list(itertools.takewhile(lambda x: True, iterator))
-
-for item in reversed(lines):
-    print(item)
+c , d = zip(*zipped)
+print(c)
+print(d)
