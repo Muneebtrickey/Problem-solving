@@ -140,3 +140,60 @@ def remove_punctuation_5(s):
 
 
 print(remove_punctuation_5(s))
+
+
+
+
+# approach 6
+
+# using the regular expressions
+
+import re  # regular expressions
+
+# "\w  --> match any word character  include alphanumeric, underscore"
+
+# "\s --> to remove whitespace include new line, tabs , space etc"
+
+# "^ --> when use alone it means match from the start of the line. "
+# when use in the bracket it means negate it don't match the thing which is 
+# present in the bracket
+
+
+
+def remove_punctuation_6(s):
+    pattern = r"[^\w\s]"
+    return re.sub(pattern, " ", s)
+
+
+print(remove_punctuation_6(s))
+
+
+
+
+# approch 7
+#using the isalnum() and isspace()
+# isalnum() checks that if the character is an alphanumber or not
+# isspace() checks that if the character is whitespace , new line or tabs. 
+
+def remove_punctuation_7(s):
+    result = "".join(char for char in s if char.isalnum() or char.isspace())
+    return result
+
+
+print(remove_punctuation_7(s))
+
+
+
+
+# approch 8
+# using the lambda function
+
+
+def remove_punctuation_8(s):
+    result = filter(lambda char: char.isalnum() or char.isspace(), s)
+    return "".join(result)
+
+
+
+print(remove_punctuation_8(s))
+
