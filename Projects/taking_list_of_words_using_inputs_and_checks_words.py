@@ -114,3 +114,70 @@ def count_number_of_words():
 count_number_of_words()
 
 
+
+# approach 3
+# uisng counter class from the collections
+from collections import Counter
+
+def count_number_words_3():
+    words_list = input("Enter your words: ").split()
+    count_words_list = Counter(words_list)
+
+
+    for word, count in count_words_list.items():
+        print(f"{word} appears {count} times. ")
+
+
+
+count_number_words_3()
+
+
+
+
+# approch 5
+# using the defaultdict
+
+from collections import defaultdict
+
+def count_occurance_using_defaultdict():
+    words_list = input("Enter your words: ").split()
+    words_count = defaultdict(int)
+    for word in words_list:
+        words_count[word] += 1
+
+    
+    for word, count in words_count.items():
+        print(f"{word} appears {count} times.  ")
+
+count_occurance_using_defaultdict()
+
+
+
+
+# approch 6
+# using sorting
+
+
+def count_occurances_using_sorting():
+    words_list = input("Enter your words: ").split()
+    words_list.sort()
+
+    current_word = None
+    count = 0
+
+    for word in words_list:
+        if word != current_word:
+            if current_word is not None:
+                print(f"{word} appears {count}times. ")
+            current_word = word
+            count = 1
+        else:
+            count += 1
+    
+    # checking the last one
+    if current_word is not None:
+        print(f"{word} appears {count} times. ")
+
+
+
+count_occurances_using_sorting()
