@@ -84,9 +84,7 @@ def birthday_paradox(group: int):
             return "two people have same birth day" + str(random_birthday)
         
     return "No one shares birthday"
-
-
-
+    
 groups = [5,10,15,20,25,50,100]
 for group in groups:
 

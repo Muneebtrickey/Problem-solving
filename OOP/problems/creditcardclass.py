@@ -29,7 +29,7 @@ class CreditCard:
         self.bank_name = bank
         self.account_number = account
         self.account_limit = limit
-        self.balance = 0
+        self.balance = 10
     
 
     def get_customer_name(self):
@@ -80,6 +80,15 @@ class CreditCard:
         
         else:
             return "amount must be int."
+
+    
+    # this is a task  , we need to create a non_public method which set the balance
+
+    def _set_balance(self,balance):
+        self.balance = balance
+    
+
+
             
 
 
@@ -88,20 +97,115 @@ class CreditCard:
 
 creditcard = CreditCard("muneeb","meezan bank",9999999,100)
 
-print(creditcard.get_customer_name())
-print(creditcard.get_bank_name())
-print(creditcard.get_account_number())
-print(creditcard.get_account_limit())
-print(creditcard.get_balance())
+# print(creditcard.get_customer_name())
+# print(creditcard.get_bank_name())
+# print(creditcard.get_account_number())
+# print(creditcard.get_account_limit())
+# print(creditcard.get_balance())
 
-
+# 
 # lets add some money in my account 
 
-print(creditcard.charge(50.0))
+# print(creditcard.charge(50.0))
 
 
 # now check that the amount is added or not
 
+# print(creditcard.get_balance())
+
+
+
+# problem
+
+
+"""
+The PredatoryCreditCard class of Section 2.4.1 provides a process month
+method that models the completion of a monthly cycle. Modify the class
+so that once a customer has made ten calls to charge in the current month,
+each additional call to that function results in an additional $1 surcharge.
+"""
+
+from datetime import datetime
+
+
+
+class PredatoryCreditCard(CreditCard):
+    OVER_LIMIT_FEE = 5
+    def __init__(self, customer , bank , account , limit , minimum_payment):
+        super().__init__(customer, bank, account, limit)
+        self._counts = 0
+        self._current_month = datetime.now().month
+        self._customer_montly_payment = 0
+        self._payment_made = 0
+        self._minimum_payment = minimum_payment
+
+
+
+    def charge(self,price: int):
+
+        if self._current_month != datetime.now().month:
+            self._counts = 0
+            self._current_month = datetime.now().month
+        
+        success = super().charge(price)
+
+        if success:
+
+            self._counts += 1
+            
+            if self._counts > 10:
+                self._balance += 1 # 1 dollar surcharge is added
+            
+        else:
+            self._balance += PredatoryCreditCard.OVER_LIMIT_FEE
+        
+        return success
+    
+
+    def find_minimum_payment(self):
+
+        self._customer_montly_payment = (self._minimum_payment / 100)  * self._balance 
+    
+
+    def process_month(self):
+
+        if self._current_month != datetime.now().month:
+
+            if self._payment_made < self._customer_montly_payment:
+                self._customer_montly_payment  += 10 # 10 dollar will be  late fee
+            
+
+            # now we are resetting for the new month
+
+            self._payment_made = 0
+            # now we are set the new month
+            self._current_month = datetime.now().month
+            self.find_minimum_payment()
+
+
+
+
+pcredit = PredatoryCreditCard("Muneeb","meezan", 219393,100,10)
+print(pcredit.get_balance())
+
+
+# now we are setting the balance
+
 print(creditcard.get_balance())
 
+# now we are setting the balance
+
+creditcard._set_balance(30)
+
+
+# now we are printing agian the balance
+
+print(creditcard.get_balance())
+
+
+   
+
+        
+
+    
 

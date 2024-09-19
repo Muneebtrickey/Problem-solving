@@ -60,14 +60,14 @@ class FibonacciProgression(Progression):
     
 
 # Example usage
-progression = Progression()
-progression.display_progression(10)
+# progression = Progression()
+# progression.display_progression(10)
 
 
-# no print the fibonacci progression
+# # no print the fibonacci progression
 
-fibonacci = FibonacciProgression(2,2)
-fibonacci.display_progression(9)
+# fibonacci = FibonacciProgression(2,2)
+# fibonacci.display_progression(9)
 
 
 
@@ -108,8 +108,36 @@ class ArithmeticProgression(Progression):
 
 
 
-arithmetic = ArithmeticProgression(128)
-print(arithmetic.display_progression())
+# arithmetic = ArithmeticProgression(128)
+# print(arithmetic.display_progression())
+
+
+
+
+# now we are extending the progression class by implementing another
+# class through which we wil find the absoulte difference between the previous values. 
+
+"""
+Write a Python class that extends the Progression class so that each value
+in the progression is the absolute value of the difference between the previous two values. You should include a constructor that accepts a pair of
+numbers as the first two values, using 2 and 200 as the defaults.
+"""
+
+
+class AbsoluteDifference(Progression):
+    def __init__(self, first=2, second=200):
+        super().__init__(first)
+        self._pre = second
+
+    def advance(self):
+        self._current, self._pre = abs(self._current - self._pre), self._current
+
+
+# Testing the progression
+absolutediff = AbsoluteDifference()
+absolutediff.display_progression(10)
+
+
 
 
 
