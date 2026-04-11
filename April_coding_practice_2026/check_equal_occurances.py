@@ -23,3 +23,18 @@ def check_occurance(s):
 
 
 print(check_occurance('abacbc'))
+
+
+
+
+
+# approch 2 
+# solution in one line using the Counter
+
+from collections import Counter
+
+def  check_occurance2(s):
+    return (len(set(Counter(s).values())) == 1)
+
+
+print(check_occurance2("ababcc"))
