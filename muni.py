@@ -1,29 +1,9 @@
-def draw_line(tick_lenght, label=" "):
-    line = "-" * tick_lenght
-    if label:
-        line += " " + label
-    print(line)
+num = 18
+while  num > 0:
+    add = 0 
+    add += num %10
+    num %= 10
 
-def draw_interval(major_length):
+print(add)
 
-    if major_length > 0:
-        draw_interval(major_length-1)
-        draw_line(major_length)
-        draw_interval(major_length - 1)
-
-
-
-def draw_ruler(nums_length, major_length):
-
-    draw_line(major_length, label="0")
-
-    for i in range(1 , nums_length +1):
-
-        draw_interval(major_length - 1)
-
-        draw_line(major_length , str(i))
-
-
-
-draw_ruler(2,4)
-
+print(18%10)
